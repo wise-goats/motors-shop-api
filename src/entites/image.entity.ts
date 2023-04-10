@@ -14,8 +14,8 @@ import { Advertise } from "./advertise.entity";
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({ type: "blob" })
-    image: Buffer;
+    @Column()
+    image: string;
 
     @ManyToOne(() => Advertise, (advertise) => advertise.images)
     advertise: Advertise;
