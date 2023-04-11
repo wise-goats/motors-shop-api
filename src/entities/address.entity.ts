@@ -24,8 +24,8 @@ class Address {
   @Column()
   zipcode: string;
 
-  @ManyToOne(() => User, (user) => user.addresses)
-  user: User;
+  // @ManyToOne(() => User, (user) => user.addresses)
+  // user: User;
 }
 
 export { Address };

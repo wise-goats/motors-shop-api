@@ -52,8 +52,8 @@ class User {
   @OneToMany(() => Order, (order) => order.buyer)
   orders: Order[];
 
-  @OneToMany(() => Advertisement, (advertisement) => advertisement.user)
-  advertisement: Advertisement[];
+  // @OneToMany(() => Advertisement, (advertisement) => advertisement.user)
+  // advertisement: Advertisement[];
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
