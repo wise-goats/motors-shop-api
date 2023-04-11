@@ -1,12 +1,9 @@
-
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   JoinColumn,
   ManyToOne,
-  
-  
 } from "typeorm";
 import { User } from "./user.entity";
 
@@ -18,14 +15,6 @@ class Order {
   @ManyToOne(() => User)
   @JoinColumn({ name: "buyer" })
   buyer: User;
-
 }
 
 export { Order };
-
-
-
-
-
-
-

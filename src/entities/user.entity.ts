@@ -6,11 +6,10 @@ import {
   Column,
   BeforeInsert,
   OneToMany,
-  
 } from "typeorm";
 import { Address } from "./address.entity";
 import { Order } from "./order.entity";
-import { Advertise } from "./advertise.entity";
+import { Advertisement } from "./advertisement.entity";
 import { Comment } from "./comment.entity";
 
 @Entity("users")
@@ -41,7 +40,7 @@ class User {
 
   @Column()
   description: string;
- 
+
   @BeforeInsert()
   hashPassword() {
     this.password = hashSync(this.password, 10);
@@ -53,19 +52,11 @@ class User {
   @OneToMany(() => Order, (order) => order.buyer)
   orders: Order[];
 
-  @OneToMany(() => Advertise, (advertise) => advertise.user)
-  advertise: Advertise[];
+  @OneToMany(() => Advertisement, (advertisement) => advertisement.user)
+  advertisement: Advertisement[];
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
-
 }
 
 export { User };
-
-
-
-
-
-
-

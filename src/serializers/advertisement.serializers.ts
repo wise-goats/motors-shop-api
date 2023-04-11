@@ -1,10 +1,10 @@
-import { string, z } from "zod";
+import { z } from "zod";
 
-const adUpdateSerializer = z
+const advertisementUpdateSerializer = z
   .object({
     brand: z.string(),
     model: z.string(),
-    year: z.string().datetime(),
+    year: z.number(),
     fuel: z.string(),
     mileage: z.number(),
     color: z.string(),
@@ -15,4 +15,4 @@ const adUpdateSerializer = z
   })
   .strip();
 
-export { adUpdateSerializer };
+export { advertisementUpdateSerializer };

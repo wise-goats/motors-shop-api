@@ -1,26 +1,30 @@
 import { AppDataSource } from "../../data-source";
 import { Advertisement } from "../../entities/advertisement.entity";
 import { AppError } from "../../errors/AppError";
-import { IAdvertisement } from "../../interfaces/advertisement";
-import { adUpdateSerializer } from "../../serializers/ads.serializers";
+// import { IAdvertisement } from "../../interfaces/advertisement";
+import { advertisementUpdateSerializer } from "../../serializers/advertisement.serializers";
 
-const updateAdService = async (adData: IAdvertisement, adId: string) => {
+const updateAdService = async (
+  advertisementData /* : IAdvertisement */,
+  advertisementId: string
+) => {
   const adRepository = AppDataSource.getRepository(Advertisement);
 
-  const findAd = await adRepository.findOneBy({ id: adId });
+  const findAd = await adRepository.findOneBy({ id: advertisementId });
 
   if (!findAd) {
     throw new AppError("Ad not found", 404);
   }
 
-  const adDataParsed = adUpdateSerializer.parse(adData);
+  const advertimentDataParsed =
+    advertisementUpdateSerializer.parse(advertisementData);
 
   const updatedAdData = {
     ...findAd,
-    ...adDataParsed,
+    ...advertimentDataParsed,
   };
 
-  await adRepository.update(adId, adDataParsed);
+  await adRepository.update(advertisementId, advertimentDataParsed);
 
   return updatedAdData;
 };
