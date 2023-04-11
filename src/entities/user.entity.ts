@@ -46,8 +46,8 @@ class User {
     this.password = hashSync(this.password, 10);
   }
 
-  @OneToMany(() => Address, (address) => address.user)
-  addresses: Address[];
+  // @OneToMany(() => Address, (address) => address.user)
+  // addresses: Address[];
 
   @OneToMany(() => Order, (order) => order.buyer)
   orders: Order[];
