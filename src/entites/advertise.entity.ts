@@ -44,7 +44,7 @@ class Advertise {
 
   @Column()
   description: string;
-  
+
   @Column()
   isActive: boolean;
  
@@ -65,18 +65,6 @@ class Advertise {
 
 export { Advertise };
 
-// Advertise
-// year -number (date: xx/xx/xxxx)
-
-
-// Image
-
-// @Column({ type: "blob" })
-// image: Buffer;
-
-
-// User
-// Description user table-
 
 
 
