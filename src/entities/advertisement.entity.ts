@@ -44,7 +44,7 @@ class Advertise {
 
   @Column()
   description: string;
-
+  
   @Column()
   isActive: boolean;
  
@@ -64,6 +64,7 @@ class Advertise {
 }
 
 export { Advertise };
+
 
 
 
