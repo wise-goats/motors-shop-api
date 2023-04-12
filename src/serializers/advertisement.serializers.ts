@@ -1,8 +1,7 @@
 import { Schema, z } from "zod";
-import { iAdvertisementDataCreate } from "../interfaces";
+import { iAdvertisement } from "../interfaces/advertisement";
 
-
-const advertisementCreateSerializer : Schema<iAdvertisementDataCreate> = z
+const advertisementSerializer: Schema<iAdvertisement> = z
   .object({
     brand: z.string(),
     model: z.string(),
@@ -13,25 +12,9 @@ const advertisementCreateSerializer : Schema<iAdvertisementDataCreate> = z
     fipePrice: z.number(),
     price: z.number(),
     description: z.string(),
-    isActive: z.boolean()
+    isActive: z.boolean(),
     // user
   })
   .strip();
 
-const advertisementUpdateSerializer = z
-  .object({
-    brand: z.string(),
-    model: z.string(),
-    year: z.number(),
-    fuel: z.string(),
-    mileage: z.number(),
-    color: z.string(),
-    fipePrice: z.number(),
-    price: z.number(),
-    description: z.string(),
-    // user
-  })
-  .strip();
-
-export { advertisementCreateSerializer
-   };
+export { advertisementSerializer };

@@ -33,7 +33,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     url: dbUrl,
     synchronize: false,
     logging: true,
-    migrations: [CreateTables1681229110379,CreateTables1681232774931],
+    migrations: [CreateTables1681229110379, CreateTables1681232774931],
     entities: [User, Address, Advertisement, Comment, Image, Order],
   };
 };
@@ -41,4 +41,3 @@ const dataSourceConfig = (): DataSourceOptions => {
 const AppDataSource = new DataSource(dataSourceConfig());
 
 export { AppDataSource };
-

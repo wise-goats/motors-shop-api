@@ -1,11 +1,11 @@
 import { AppDataSource } from "../../data-source";
 import { Advertisement } from "../../entities/advertisement.entity";
 import { AppError } from "../../errors/AppError";
-// import { IAdvertisement } from "../../interfaces/advertisement";
-import { advertisementUpdateSerializer } from "../../serializers/advertisement.serializers";
+import { iAdvertisement } from "../../interfaces/advertisement";
+import { advertisementSerializer } from "../../serializers/advertisement.serializers";
 
 const updateAdService = async (
-  advertisementData /* : IAdvertisement */,
+  advertisementData: iAdvertisement,
   advertisementId: string
 ) => {
   const adRepository = AppDataSource.getRepository(Advertisement);
@@ -17,7 +17,7 @@ const updateAdService = async (
   }
 
   const advertimentDataParsed =
-    advertisementUpdateSerializer.parse(advertisementData);
+    advertisementSerializer.parse(advertisementData);
 
   const updatedAdData = {
     ...findAd,

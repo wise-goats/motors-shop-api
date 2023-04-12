@@ -1,24 +1,19 @@
 import { Router } from "express";
-import { createToAdvertisementController, deletionToAdvertisementController } from "../controllers/advertisement.controllers";
-import dataVerificationByZodMiddleware from "../middlewares/dataVerificationByYup.middlewares";
-import { advertisementCreateSerializer } from "../serializers/advertisement.serializers"; 
+import {
+  createToAdvertisementController,
+  deletionToAdvertisementController,
+} from "../controllers/advertisement.controllers";
+import dataVerificationMiddleware from "../middlewares/dataVerification.middlewares";
+import { advertisementSerializer } from "../serializers/advertisement.serializers";
 
 const advertisementRoutes = Router();
 
 advertisementRoutes.post(
   "/",
-
-  dataVerificationByZodMiddleware(advertisementCreateSerializer),
-  createToAdvertisementController,
-  
+  dataVerificationMiddleware(advertisementSerializer),
+  createToAdvertisementController
 );
 
-advertisementRoutes.delete(
-  "/:id",
-  deletionToAdvertisementController
-  
-);
-
-
+advertisementRoutes.delete("/:id", deletionToAdvertisementController);
 
 export default advertisementRoutes;
