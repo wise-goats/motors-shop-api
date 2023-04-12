@@ -4,7 +4,7 @@ import { AppError } from "../../errors/AppError";
 import { iAdvertisement } from "../../interfaces/advertisement";
 import { advertisementSerializer } from "../../serializers/advertisement.serializers";
 
-const updateAdService = async (
+const updateAdvertisementService = async (
   advertisementData: iAdvertisement,
   advertisementId: string
 ) => {
@@ -29,4 +29,4 @@ const updateAdService = async (
   return updatedAdData;
 };
 
-export default updateAdService;
+export default updateAdvertisementService;

@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
+import { iAdvertisement } from "../interfaces/advertisement";
 import deletionToAdvertisementService from "../services/advertises/deletionToAdvertisement.service";
 import createToAdvertisementService from "../services/advertises/createToAdvertisement.service";
+import updateAdvertisementService from "../services/advertises/updateAdvertises.service";
 
 const createToAdvertisementController = async (req: Request, res: Response) => {
   const dataAd = req.body;
@@ -19,4 +21,20 @@ const deletionToAdvertisementController = async (
   return res.status(204).json(adRemoved);
 };
 
-export { deletionToAdvertisementController, createToAdvertisementController };
+const updateAdvertisementController = async (req: Request, res: Response) => {
+  const advertisementData: iAdvertisement = req.body;
+  const advertisementId: string = req.params.id;
+
+  const updatedAdvertisement = await updateAdvertisementService(
+    advertisementData,
+    advertisementId
+  );
+
+  return res.status(204).json(updatedAdvertisement);
+};
+
+export {
+  createToAdvertisementController,
+  deletionToAdvertisementController,
+  updateAdvertisementController,
+};
