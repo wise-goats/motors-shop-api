@@ -46,9 +46,6 @@ class Advertisement {
   @Column()
   isActive: boolean;
 
-  @ManyToOne(() => User, (user) => user.addresses)
-  user: User;
-
   @OneToMany(() => Order, (order) => order.buyer)
   orders: Order[];
 
@@ -60,14 +57,3 @@ class Advertisement {
 }
 
 export { Advertisement };
-
-// Advertise
-// year -number (date: xx/xx/xxxx)
-
-// Image
-
-// @Column({ type: "blob" })
-// image: Buffer;
-
-// User
-// Description user table-
