@@ -5,17 +5,32 @@ import {
   updateAdvertisementController,
 } from "../controllers/advertisement.controllers";
 import dataVerificationMiddleware from "../middlewares/dataVerification.middlewares";
-import { advertisementSerializer } from "../serializers/advertisement.serializers";
-
+import {
+  advertisementSerializer,
+  newAdvertisementSerializer,
+} from "../serializers/advertisement.serializers";
+import { verifyTokenMiddleware } from "../middlewares/verifyToken.middleware";
+import { listAdvertsementsController } from "../controllers/advertisement.controllers";
 const advertisementRoutes = Router();
 
 advertisementRoutes.post(
   "/",
-  dataVerificationMiddleware(advertisementSerializer),
+  dataVerificationMiddleware(newAdvertisementSerializer),
+  verifyTokenMiddleware,
   createToAdvertisementController
 );
 
-advertisementRoutes.delete("/:id", deletionToAdvertisementController);
-advertisementRoutes.patch("/:id", updateAdvertisementController);
+advertisementRoutes.delete(
+  "/:id",
+  verifyTokenMiddleware,
+  deletionToAdvertisementController
+);
+advertisementRoutes.patch(
+  "/:id",
+  verifyTokenMiddleware,
+  updateAdvertisementController
+);
+
+advertisementRoutes.get("", listAdvertsementsController);
 
 export default advertisementRoutes;

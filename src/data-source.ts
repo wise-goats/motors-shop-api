@@ -9,6 +9,7 @@ import { CreateTables1681229110379 } from "./migrations/1681229110379-createTabl
 import { Comment } from "./entities/comment.entity";
 import { Image } from "./entities/image.entity";
 import { CreateTables1681232774931 } from "./migrations/1681232774931-createTables";
+import { AddRelationUserAndAdvertisement1681757106834 } from "./migrations/1681757106834-add-relation-user-and-advertisement";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const dbUrl: string | undefined = process.env.DATABASE_URL;
@@ -33,7 +34,11 @@ const dataSourceConfig = (): DataSourceOptions => {
     url: dbUrl,
     synchronize: false,
     logging: true,
-    migrations: [CreateTables1681229110379, CreateTables1681232774931],
+    migrations: [
+      CreateTables1681229110379,
+      CreateTables1681232774931,
+      AddRelationUserAndAdvertisement1681757106834,
+    ],
     entities: [User, Address, Advertisement, Comment, Image, Order],
   };
 };
