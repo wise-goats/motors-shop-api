@@ -10,6 +10,14 @@ interface IUserRequestReturnedClient {
   isSeller: boolean;
   description: string;
 }
+const addressSchema = z.object({
+  street: z.string(),
+  number: z.number(),
+  complement: z.string().optional(),
+  state: z.string(),
+  city: z.string(),
+  zipcode: z.string(),
+});
 
 const newUserRequestSerializer = z.object({
   name: z.string(),
@@ -25,6 +33,7 @@ const newUserRequestSerializer = z.object({
   birthDate: z.string(),
   description: z.string(),
   password: z.string().max(15).trim(),
+  addresses: addressSchema,
 });
 
 const userWithoutPasswordFieldSerializer = z.object({

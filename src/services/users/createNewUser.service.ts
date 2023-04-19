@@ -3,10 +3,12 @@ import { User } from "../../entities/user.entity";
 import { userWithoutPasswordFieldSerializer } from "../../serializers/users.serializers";
 import { AppError } from "../../errors/AppError";
 import { INewUserRequest } from "../../interfaces/users.interfaces";
+import { Address } from "../../entities/address.entity";
 const createNewUserService = async (
   dataUser: INewUserRequest
 ): Promise<any> => {
   const repositoryUser = AppDataSource.getRepository(User);
+  const repositoryAddress = AppDataSource.getRepository(Address);
   const findUser = await repositoryUser.findOne({
     where: { email: dataUser.email },
     withDeleted: true,
@@ -16,11 +18,40 @@ const createNewUserService = async (
     throw new AppError("user exists", 409);
   }
 
-  const user = repositoryUser.create(dataUser);
-  await repositoryUser.save(user);
+  const {
+    name,
+    email,
+    password,
+    isAdm,
+    phone,
+    cpf,
+    birthDate,
+    isSeller,
+    description,
+    addresses,
+  } = dataUser;
 
-  const userWithoutPasswordField =
-    await userWithoutPasswordFieldSerializer.parse(user, {});
+  const userData = {
+    name,
+    email,
+    password,
+    isAdm,
+    phone,
+    cpf,
+    birthDate,
+    isSeller,
+    description,
+  };
+
+  const userCreated = repositoryUser.create(userData);
+  await repositoryUser.save(userCreated);
+  const address = repositoryAddress.create({ ...addresses, user: userCreated });
+  await repositoryAddress.save(address);
+
+  const userWithoutPasswordField = userWithoutPasswordFieldSerializer.parse(
+    userCreated,
+    {}
+  );
   return userWithoutPasswordField;
 };
 
