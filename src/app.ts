@@ -4,6 +4,7 @@ import handleErrors from "./errors/handlerErrors";
 import advertisementRoutes from "./routes/advertisement.routes";
 import loginRouts from "./routes/login.routes";
 import userRoutes from "./routes/users.routes";
+import profileRoutes from "./routes/profile.routes";
 
 const app: Application = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use("/advertisement", advertisementRoutes);
 app.use("/users", userRoutes);
 app.use("/login", loginRouts);
+app.use("/profile", profileRoutes);
 
 app.use(handleErrors);
 export default app;
