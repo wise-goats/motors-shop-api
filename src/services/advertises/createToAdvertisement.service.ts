@@ -3,6 +3,7 @@ import { Advertisement } from "../../entities/advertisement.entity";
 import { iAdvertisement } from "../../interfaces/adverticements.interfaces";
 import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/AppError";
+import { Image } from "../../entities/image.entity";
 
 const createToAdvertisementService = async (
   dataAd: iAdvertisement,
@@ -10,6 +11,7 @@ const createToAdvertisementService = async (
 ) => {
   const repositoryUser = AppDataSource.getRepository(User);
   const adRepository = AppDataSource.getRepository(Advertisement);
+  const imageAdRepository = AppDataSource.getRepository(Image);
   const findUser = await repositoryUser.findOne({
     where: { id: idUser },
   });
@@ -19,15 +21,30 @@ const createToAdvertisementService = async (
   }
 
   const { password, ...userWithoutPassword } = findUser;
-  const advertisement = adRepository.create({
+  const advertisementCreated = adRepository.create({
     ...dataAd,
     isActive: true,
     user: userWithoutPassword,
   });
 
-  await adRepository.save(advertisement);
+  const advertisement = await adRepository.findOneBy({
+    id: advertisementCreated.id,
+  });
+  if (!advertisement) {
+    throw new AppError("error adding images", 404);
+  }
+  const images = dataAd.images.map((image) => {
+    const newImage = imageAdRepository.create({
+      ...image,
+      advertisement: advertisement,
+    });
+    return newImage;
+  });
 
-  return advertisement;
+  await imageAdRepository.save(images);
+  await adRepository.save(advertisementCreated);
+
+  return advertisementCreated;
 };
 
 export default createToAdvertisementService;

@@ -11,6 +11,9 @@
 //   description: string;
 // }
 
+interface iImages {
+  image: string;
+}
 interface iAdvertisement {
   brand: string;
   model: string;
@@ -21,6 +24,7 @@ interface iAdvertisement {
   fipePrice: number;
   price: number;
   description: string;
+  images: iImages[];
 }
 
 interface iAdvertisementList {
