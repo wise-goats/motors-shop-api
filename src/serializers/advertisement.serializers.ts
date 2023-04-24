@@ -1,4 +1,4 @@
-import { Schema, z } from "zod";
+import { Schema, array, z } from "zod";
 // import { iAdvertisement } from "../interfaces/advertisement";
 
 const advertisementSerializer = z.object({
@@ -13,6 +13,9 @@ const advertisementSerializer = z.object({
   price: z.number(),
   description: z.string(),
 });
+const imageAdvertisementSerializer = z.object({
+  image: z.string(),
+});
 
 const newAdvertisementSerializer = z.object({
   brand: z.string(),
@@ -24,6 +27,7 @@ const newAdvertisementSerializer = z.object({
   fipePrice: z.number(),
   price: z.number(),
   description: z.string(),
+  images: z.array(imageAdvertisementSerializer),
 });
 
 const listAdvertsementSchema = z.array(advertisementSerializer);
