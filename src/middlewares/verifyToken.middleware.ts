@@ -3,7 +3,7 @@ import Jwt from "jsonwebtoken";
 import "dotenv/config";
 import { AppError } from "../errors/AppError";
 
-const verifyTokenMiddleware = async (
+export const verifyTokenMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -34,5 +34,3 @@ const verifyTokenMiddleware = async (
     });
   }
 };
-
-export default verifyTokenMiddleware;

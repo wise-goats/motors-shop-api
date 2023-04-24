@@ -54,6 +54,9 @@ class Advertisement {
 
   @OneToMany(() => Image, (image) => image.advertisement)
   images: Image[];
+
+  @ManyToOne(() => User, (user) => user.advertisement)
+  user: User;
 }
 
 export { Advertisement };
