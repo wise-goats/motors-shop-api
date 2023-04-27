@@ -4,6 +4,7 @@ import { userWithoutPasswordFieldSerializer } from "../../serializers/users.seri
 import { AppError } from "../../errors/AppError";
 import { INewUserRequest } from "../../interfaces/users.interfaces";
 import { Address } from "../../entities/address.entity";
+
 const createNewUserService = async (
   dataUser: INewUserRequest
 ): Promise<any> => {
@@ -17,6 +18,7 @@ const createNewUserService = async (
   if (findUser) {
     throw new AppError("user exists", 409);
   }
+  const birthDateObject = new Date(dataUser.birthDate);
 
   const {
     name,
@@ -30,7 +32,6 @@ const createNewUserService = async (
     description,
     addresses,
   } = dataUser;
-
   const userData = {
     name,
     email,
@@ -38,7 +39,7 @@ const createNewUserService = async (
     isAdm,
     phone,
     cpf,
-    birthDate,
+    birthDate: birthDateObject,
     isSeller,
     description,
   };

@@ -1,4 +1,5 @@
 import { Schema, z } from "zod";
+import { iUserUpdated } from "../interfaces/users.interfaces";
 
 interface IUserRequestReturnedClient {
   name: string;
@@ -48,8 +49,36 @@ const userWithoutPasswordFieldSerializer = z.object({
     .trim()
     .optional(),
   phone: z.string().optional(),
-  birthDate: z.string(),
+  birthDate: z.date(),
   description: z.string(),
 });
 
-export { userWithoutPasswordFieldSerializer, newUserRequestSerializer };
+const IUpdateUserRequestSerializer = z.object({
+  name: z.string().optional(),
+  email: z.string().email().optional(),
+  cpf: z
+    .string()
+    .max(11)
+    .regex(/^\d{11}$/)
+    .trim()
+    .optional(),
+  phone: z.string().optional(),
+  birthDate: z.string().optional(),
+  description: z.string().optional(),
+});
+
+const IUpdateAddressRequestSerializer = z.object({
+  street: z.string().optional(),
+  number: z.number().optional(),
+  complement: z.string().optional(),
+  state: z.string().optional(),
+  city: z.string().optional(),
+  zipcode: z.string().optional(),
+});
+
+export {
+  userWithoutPasswordFieldSerializer,
+  newUserRequestSerializer,
+  IUpdateUserRequestSerializer,
+  IUpdateAddressRequestSerializer,
+};

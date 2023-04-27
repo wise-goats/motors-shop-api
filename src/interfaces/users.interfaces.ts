@@ -19,4 +19,23 @@ interface INewUserRequest {
   addresses: IAddress;
 }
 
-export { INewUserRequest };
+interface iUserUpdated {
+  name?: string;
+  email?: string;
+  phone?: string;
+  cpf?: string;
+  birthDate?: Date;
+  isSeller?: boolean;
+  description?: string;
+}
+
+interface IAddressUpdated {
+  street?: string;
+  number?: number;
+  complement?: string;
+  state?: string;
+  city?: string;
+  zipcode?: string;
+}
+
+export { INewUserRequest, iUserUpdated, IAddressUpdated };
