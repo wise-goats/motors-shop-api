@@ -51,6 +51,7 @@ const userWithoutPasswordFieldSerializer = z.object({
   phone: z.string().optional(),
   birthDate: z.date(),
   description: z.string(),
+  reset_token: z.string().nullable(),
 });
 
 const IUpdateUserRequestSerializer = z.object({

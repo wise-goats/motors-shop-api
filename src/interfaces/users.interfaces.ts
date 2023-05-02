@@ -27,6 +27,7 @@ interface iUserUpdated {
   birthDate?: Date;
   isSeller?: boolean;
   description?: string;
+  reset_token?: string;
 }
 
 interface IAddressUpdated {

@@ -9,6 +9,8 @@ import deleteUserService from "../services/users/deleteUser.service";
 import updateDataUserService from "../services/users/updateDataUser.service";
 import { AppError } from "../errors/AppError";
 import updateDataUserAddressService from "../services/users/updateDataUserAddress.service";
+import resetPasswordService from "../services/users/resetPassword.service";
+import sednPasswordTokenService from "../services/users/sendPasswordToken.service";
 
 const createNewUserController = async (req: Request, res: Response) => {
   const dataUser: INewUserRequest = req.body;
@@ -55,9 +57,29 @@ const deleteUserController = async (req: Request, res: Response) => {
   return res.status(204).json(userDelete);
 };
 
+const resetPasswordController = async (req: Request, res: Response) => {
+  const { password } = req.body;
+  const { token } = req.params;
+
+  await resetPasswordService(password, token);
+
+  return res.status(200).json({ message: "Password changed" });
+};
+
+const sendPasswordTokenController = async (req: Request, res: Response) => {
+  const { email } = req.body;
+  const { protocol } = req;
+  const host = req.get("host");
+  await sednPasswordTokenService(email, protocol, host!);
+
+  return res.status(200).json({ message: "Token send to user email" });
+};
+
 export {
   createNewUserController,
   deleteUserController,
   updateDataUserController,
   updateDataUserAddressController,
+  resetPasswordController,
+  sendPasswordTokenController,
 };
