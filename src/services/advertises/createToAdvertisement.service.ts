@@ -26,6 +26,7 @@ const createToAdvertisementService = async (
     isActive: true,
     user: userWithoutPassword,
   });
+  await adRepository.save(advertisementCreated);
 
   const advertisement = await adRepository.findOneBy({
     id: advertisementCreated.id,
@@ -42,7 +43,6 @@ const createToAdvertisementService = async (
   });
 
   await imageAdRepository.save(images);
-  await adRepository.save(advertisementCreated);
 
   return advertisementCreated;
 };
