@@ -3,6 +3,8 @@ import { Router } from "express";
 import {
   createNewUserController,
   deleteUserController,
+  resetPasswordController,
+  sendPasswordTokenController,
   updateDataUserAddressController,
   updateDataUserController,
 } from "../controllers/users.controllers";
@@ -20,6 +22,9 @@ userRoutes.post(
   dataVerificationByZodMiddleware(newUserRequestSerializer),
   createNewUserController
 );
+
+userRoutes.post("/resetpassword", sendPasswordTokenController);
+userRoutes.post("/validatetoken/:token", resetPasswordController);
 
 userRoutes.patch(
   "",

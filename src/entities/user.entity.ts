@@ -35,11 +35,14 @@ class User {
   @Column()
   birthDate: Date;
 
-  @Column()
+  @Column({ default: false })
   isSeller: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
+
+  @Column({ nullable: true })
+  reset_token: string;
 
   @BeforeInsert()
   hashPassword() {
