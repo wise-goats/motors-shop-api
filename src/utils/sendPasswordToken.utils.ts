@@ -11,8 +11,8 @@ export interface ISendTokenRequest {
 class SendPasswordTokenService {
   async sendToken({ to, subject, text }: ISendTokenRequest) {
     const transporter = createTransport({
-      host: "smtp.mailtrap.io",
-      port: 2525,
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
