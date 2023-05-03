@@ -11,6 +11,7 @@ import { Image } from "./entities/image.entity";
 import { CreateTables1681232774931 } from "./migrations/1681232774931-createTables";
 import { AddRelationUserAndAdvertisement1681757106834 } from "./migrations/1681757106834-add-relation-user-and-advertisement";
 import { resetPasswordTokenField1682599835130 } from "./migrations/1682599835130-resetPasswordTokenField";
+import { AlterationCascate1683142985417 } from "./migrations/1683142985417-alteration-cascate";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const dbUrl: string | undefined = process.env.DATABASE_URL;
@@ -40,6 +41,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       CreateTables1681232774931,
       AddRelationUserAndAdvertisement1681757106834,
       resetPasswordTokenField1682599835130,
+      AlterationCascate1683142985417,
     ],
     entities: [User, Address, Advertisement, Comment, Image, Order],
   };

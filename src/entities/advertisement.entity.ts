@@ -52,7 +52,7 @@ class Advertisement {
   @OneToMany(() => Comment, (comment) => comment.advertisement)
   comments: Comment[];
 
-  @OneToMany(() => Image, (image) => image.advertisement)
+  @OneToMany(() => Image, (image) => image.advertisement, { cascade: true })
   images: Image[];
 
   @ManyToOne(() => User, (user) => user.advertisement)

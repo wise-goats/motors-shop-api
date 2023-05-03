@@ -38,6 +38,7 @@ interface iAdvertisementList {
   fipePrice: number;
   price: number;
   description: string;
+  isActive: boolean;
 }
 
 export { iAdvertisement, iAdvertisementList };
