@@ -1,6 +1,9 @@
 import { Schema, z } from "zod";
 import { iUserUpdated } from "../interfaces/users.interfaces";
-import { advertisementSerializer } from "./advertisement.serializers";
+import {
+  advertisementSerializer,
+  advertisementToIdSerializer,
+} from "./advertisement.serializers";
 
 interface IUserRequestReturnedClient {
   name: string;
@@ -64,6 +67,15 @@ const userProfileSerializer = z.object({
   description: z.string(),
   advertisement: advertisementSerializer.array(),
 });
+const userProfileToIdSerializer = z.object({
+  id: z.string().uuid().optional(),
+  name: z.string(),
+  email: z.string().email().optional(),
+  isSeller: z.boolean().optional(),
+  phone: z.string().optional(),
+  description: z.string(),
+  advertisement: advertisementToIdSerializer.array(),
+});
 
 const multipleProfilesSerializer = userProfileSerializer.array();
 
@@ -97,4 +109,5 @@ export {
   IUpdateAddressRequestSerializer,
   userProfileSerializer,
   multipleProfilesSerializer,
+  userProfileToIdSerializer,
 };
