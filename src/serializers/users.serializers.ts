@@ -1,5 +1,6 @@
 import { Schema, z } from "zod";
 import { iUserUpdated } from "../interfaces/users.interfaces";
+import { advertisementSerializer } from "./advertisement.serializers";
 
 interface IUserRequestReturnedClient {
   name: string;
@@ -54,6 +55,18 @@ const userWithoutPasswordFieldSerializer = z.object({
   reset_token: z.string().nullable(),
 });
 
+const userProfileSerializer = z.object({
+  id: z.string().uuid().optional(),
+  name: z.string(),
+  email: z.string().email().optional(),
+  isSeller: z.boolean().optional(),
+  phone: z.string().optional(),
+  description: z.string(),
+  advertisement: advertisementSerializer.array(),
+});
+
+const multipleProfilesSerializer = userProfileSerializer.array();
+
 const IUpdateUserRequestSerializer = z.object({
   name: z.string().optional(),
   email: z.string().email().optional(),
@@ -82,4 +95,6 @@ export {
   newUserRequestSerializer,
   IUpdateUserRequestSerializer,
   IUpdateAddressRequestSerializer,
+  userProfileSerializer,
+  multipleProfilesSerializer,
 };

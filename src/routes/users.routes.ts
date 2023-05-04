@@ -3,6 +3,8 @@ import { Router } from "express";
 import {
   createNewUserController,
   deleteUserController,
+  listUserByIdController,
+  listUsersController,
   resetPasswordController,
   sendPasswordTokenController,
   updateDataUserAddressController,
@@ -14,9 +16,11 @@ import {
   newUserRequestSerializer,
 } from "../serializers/users.serializers";
 import dataVerificationByZodMiddleware from "../middlewares/dataVerification.middlewares";
+import showProfileController from "../controllers/profile.controller";
 
 const userRoutes = Router();
-
+userRoutes.get("/", listUsersController);
+userRoutes.get("/:userid", verifyTokenMiddleware, listUserByIdController);
 userRoutes.post(
   "",
   dataVerificationByZodMiddleware(newUserRequestSerializer),
