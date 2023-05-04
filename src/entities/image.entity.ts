@@ -9,7 +9,9 @@ class Image {
   @Column()
   image: string;
 
-  @ManyToOne(() => Advertisement, (advertisement) => advertisement.images)
+  @ManyToOne(() => Advertisement, (advertisement) => advertisement.images, {
+    onDelete: "CASCADE",
+  })
   advertisement: Advertisement;
 }
 
