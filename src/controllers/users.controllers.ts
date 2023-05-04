@@ -11,12 +11,24 @@ import { AppError } from "../errors/AppError";
 import updateDataUserAddressService from "../services/users/updateDataUserAddress.service";
 import resetPasswordService from "../services/users/resetPassword.service";
 import sednPasswordTokenService from "../services/users/sendPasswordToken.service";
+import listUserByIdService from "../services/users/listUserById.service";
+import listUsersService from "../services/users/listUsers.service";
 
 const createNewUserController = async (req: Request, res: Response) => {
   const dataUser: INewUserRequest = req.body;
 
   const registerUser = await createNewUserService(dataUser);
   return res.status(201).json(registerUser);
+};
+
+const listUsersController = async (req: Request, res: Response) => {
+  const users = await listUsersService();
+  return res.status(200).json(users);
+};
+const listUserByIdController = async (req: Request, res: Response) => {
+  const userId: string = req.params.userid;
+  const user = await listUserByIdService(userId);
+  return res.status(200).json(user);
 };
 
 const updateDataUserController = async (req: Request, res: Response) => {
@@ -82,4 +94,6 @@ export {
   updateDataUserAddressController,
   resetPasswordController,
   sendPasswordTokenController,
+  listUserByIdController,
+  listUsersController,
 };
