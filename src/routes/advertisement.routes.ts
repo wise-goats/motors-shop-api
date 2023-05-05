@@ -44,11 +44,7 @@ advertisementRoutes.patch(
   updateAdvertisementController
 );
 
-advertisementRoutes.get(
-  "/:id",
-  verifyTokenMiddleware,
-  listAdvertsementByIdController
-);
+advertisementRoutes.get("/:id", listAdvertsementByIdController);
 advertisementRoutes.get("", listAdvertsementsController);
 
 export default advertisementRoutes;

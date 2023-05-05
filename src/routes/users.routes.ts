@@ -20,7 +20,7 @@ import showProfileController from "../controllers/profile.controller";
 
 const userRoutes = Router();
 userRoutes.get("/", listUsersController);
-userRoutes.get("/:userid", verifyTokenMiddleware, listUserByIdController);
+userRoutes.get("/:userid", listUserByIdController);
 userRoutes.post(
   "",
   dataVerificationByZodMiddleware(newUserRequestSerializer),
