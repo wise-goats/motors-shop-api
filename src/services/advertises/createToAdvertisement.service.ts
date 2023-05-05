@@ -19,6 +19,12 @@ const createToAdvertisementService = async (
   if (!findUser) {
     throw new AppError("user not exists", 404);
   }
+  if (findUser.isSeller !== true) {
+    throw new AppError(
+      "User is not advertiser. Create an advertiser account to publish your product.er not exists",
+      401
+    );
+  }
 
   const { password, ...userWithoutPassword } = findUser;
   const advertisementCreated = adRepository.create({

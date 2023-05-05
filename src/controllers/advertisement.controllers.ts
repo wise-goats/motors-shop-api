@@ -8,6 +8,7 @@ import {
   iAdvertisementList,
   // iAdvertisementUpdated,
 } from "../interfaces/adverticements.interfaces";
+import listAdvertsementByIdService from "../services/advertises/listAdvertsementById.service";
 
 const createToAdvertisementController = async (req: Request, res: Response) => {
   const dataAd = req.body;
@@ -51,9 +52,17 @@ const listAdvertsementsController = async (req: Request, res: Response) => {
   return res.json(advetsements);
 };
 
+const listAdvertsementByIdController = async (req: Request, res: Response) => {
+  const idAdvertisement = req.params.id;
+  const advetsements: any = await listAdvertsementByIdService(idAdvertisement);
+
+  return res.json(advetsements);
+};
+
 export {
   createToAdvertisementController,
   deletionToAdvertisementController,
   updateAdvertisementController,
   listAdvertsementsController,
+  listAdvertsementByIdController,
 };
