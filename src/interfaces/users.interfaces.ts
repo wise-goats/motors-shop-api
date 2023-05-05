@@ -1,3 +1,8 @@
+import {
+  iAdvertisement,
+  iAdvertisementList,
+} from "./adverticements.interfaces";
+
 interface IAddress {
   street: string;
   number: number;
@@ -39,4 +44,14 @@ interface IAddressUpdated {
   zipcode?: string;
 }
 
-export { INewUserRequest, iUserUpdated, IAddressUpdated };
+interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  isSeller: boolean;
+  phone: string;
+  description: string;
+  advertisement: iAdvertisementList[];
+}
+
+export { INewUserRequest, iUserUpdated, IAddressUpdated, IUser };
