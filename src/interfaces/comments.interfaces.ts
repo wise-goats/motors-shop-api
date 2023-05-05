@@ -10,6 +10,7 @@ interface IComment {
   decription: string;
   advertisement: iAdvertisement;
   user: IUser;
+  createdAt: Date;
 }
 
 export { INewCommentRequest, IComment };
