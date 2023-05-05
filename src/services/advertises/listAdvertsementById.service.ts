@@ -27,6 +27,7 @@ const getAdvertisementByIdService = async (
       "advertisement.isActive",
       "user.id",
       "user.name",
+      "user.description",
       "image.id",
       "image.image",
     ])
