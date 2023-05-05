@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createToAdvertisementController,
   deletionToAdvertisementController,
+  listAdvertsementByIdController,
   updateAdvertisementController,
 } from "../controllers/advertisement.controllers";
 import dataVerificationMiddleware from "../middlewares/dataVerification.middlewares";
@@ -25,12 +26,18 @@ advertisementRoutes.delete(
   verifyTokenMiddleware,
   deletionToAdvertisementController
 );
+
 advertisementRoutes.patch(
   "/:id",
   verifyTokenMiddleware,
   updateAdvertisementController
 );
 
+advertisementRoutes.get(
+  "/:id",
+  verifyTokenMiddleware,
+  listAdvertsementByIdController
+);
 advertisementRoutes.get("", listAdvertsementsController);
 
 export default advertisementRoutes;
