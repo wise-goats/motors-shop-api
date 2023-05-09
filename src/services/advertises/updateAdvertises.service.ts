@@ -29,7 +29,7 @@ const updateAdvertisementService = async (
   }
 
   advertisementData = { ...advertisementData };
-  const updatedData = { ...advertisementData, ...findAd };
+  const updatedData = { ...findAd, ...advertisementData };
 
   const advertimentDataParsed = advertisementSerializer.parse(updatedData);
 
