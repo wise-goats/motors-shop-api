@@ -13,6 +13,7 @@ import { AddRelationUserAndAdvertisement1681757106834 } from "./migrations/16817
 import { resetPasswordTokenField1682599835130 } from "./migrations/1682599835130-resetPasswordTokenField";
 import { AlterationCascate1683142985417 } from "./migrations/1683142985417-alteration-cascate";
 import { createdAtOnComment1683304598868 } from "./migrations/1683304598868-createdAtOnComment";
+import { addCascadeDeletesOnEntities1683640448338 } from "./migrations/1683640448338-addCascadeDeletesOnEntities";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const dbUrl: string | undefined = process.env.DATABASE_URL;
@@ -44,6 +45,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       resetPasswordTokenField1682599835130,
       AlterationCascate1683142985417,
       createdAtOnComment1683304598868,
+      addCascadeDeletesOnEntities1683640448338,
     ],
     entities: [User, Address, Advertisement, Comment, Image, Order],
   };

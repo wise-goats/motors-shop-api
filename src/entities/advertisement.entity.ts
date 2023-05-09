@@ -49,7 +49,9 @@ class Advertisement {
   @OneToMany(() => Order, (order) => order.buyer)
   orders: Order[];
 
-  @OneToMany(() => Comment, (comment) => comment.advertisement)
+  @OneToMany(() => Comment, (comment) => comment.advertisement, {
+    cascade: true,
+  })
   comments: Comment[];
 
   @OneToMany(() => Image, (image) => image.advertisement, { cascade: true })

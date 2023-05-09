@@ -55,10 +55,12 @@ class User {
   @OneToMany(() => Order, (order) => order.buyer)
   orders: Order[];
 
-  @OneToMany(() => Advertisement, (advertisement) => advertisement.user)
+  @OneToMany(() => Advertisement, (advertisement) => advertisement.user, {
+    cascade: true,
+  })
   advertisement: Advertisement[];
 
-  @OneToMany(() => Comment, (comment) => comment.user)
+  @OneToMany(() => Comment, (comment) => comment.user, { cascade: true })
   comments: Comment[];
 }
 
