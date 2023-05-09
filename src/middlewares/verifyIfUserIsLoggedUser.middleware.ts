@@ -16,3 +16,5 @@ const verifyIfUserIsLoggedUserMiddleware = (
     return res.status(error.statusCode).json(error.message);
   }
 };
+
+export default verifyIfUserIsLoggedUserMiddleware
