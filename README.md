@@ -22,6 +22,9 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 - [TypeORM](https://typeorm.io/)
 - [Zod](https://github.com/colinhacks/zod)
 
+Link da webpage:
+- [Motors Shop Webpage](https://github.com/wise-goats/motors-shop-webpage)
+
 ---
 
 ## 2. Diagrama ER
