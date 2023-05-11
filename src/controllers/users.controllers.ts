@@ -13,6 +13,7 @@ import resetPasswordService from "../services/users/resetPassword.service";
 import sednPasswordTokenService from "../services/users/sendPasswordToken.service";
 import listUserByIdService from "../services/users/listUserById.service";
 import listUsersService from "../services/users/listUsers.service";
+import listUserAddressService from "../services/users/listUserAddress.service";
 
 const createNewUserController = async (req: Request, res: Response) => {
   const dataUser: INewUserRequest = req.body;
@@ -87,6 +88,12 @@ const sendPasswordTokenController = async (req: Request, res: Response) => {
   return res.status(200).json({ message: "Token send to user email" });
 };
 
+const listUserAddressController = async (req: Request, res: Response) => {
+  const address = await listUserAddressService(req.user.id);
+
+  return res.status(200).json(address);
+};
+
 export {
   createNewUserController,
   deleteUserController,
@@ -96,4 +103,5 @@ export {
   sendPasswordTokenController,
   listUserByIdController,
   listUsersController,
+  listUserAddressController,
 };

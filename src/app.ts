@@ -6,6 +6,7 @@ import loginRouts from "./routes/login.routes";
 import userRoutes from "./routes/users.routes";
 import profileRoutes from "./routes/profile.routes";
 import cors from "cors";
+import addressRoutes from "./routes/address.routes";
 
 const app: Application = express();
 
@@ -17,6 +18,7 @@ app.use("/advertisement", advertisementRoutes);
 app.use("/users", userRoutes);
 app.use("/login", loginRouts);
 app.use("/profile", profileRoutes);
+app.use("/address", addressRoutes);
 
 app.use(handleErrors);
 export default app;

@@ -3,6 +3,7 @@ import { Router } from "express";
 import {
   createNewUserController,
   deleteUserController,
+  listUserAddressController,
   listUserByIdController,
   listUsersController,
   resetPasswordController,
