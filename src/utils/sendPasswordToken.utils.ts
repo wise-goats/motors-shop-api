@@ -59,7 +59,7 @@ class SendPasswordTokenService {
             color: "#DC4D2F",
             text: "Reset your password",
             // link: `${protocol}://${host}/resetPassword/${resetToken}`,
-            link: `http://localhost:5173/resetPassword/${resetToken}`,
+            link: `https://motors-shop-webpage-thaygobrd.vercel.app/resetPassword/${resetToken}`,
             // deve vir o link do front
           },
         },
