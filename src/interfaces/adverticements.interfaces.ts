@@ -39,6 +39,8 @@ interface iAdvertisementList {
   price: number;
   description: string;
   isActive: boolean;
+  page: string | number;
+  actualPage: string | number;
 }
 
 export { iAdvertisement, iAdvertisementList };

@@ -47,16 +47,17 @@ const updateAdvertisementController = async (req: Request, res: Response) => {
 };
 
 const listAdvertsementsController = async (req: Request, res: Response) => {
-  const advetsements: iAdvertisementList[] = await listAdvertsementsService();
+  const page: any = req.query.page;
+  const advertisements = await listAdvertsementsService(page);
 
-  return res.json(advetsements);
+  return res.json(advertisements);
 };
 
 const listAdvertsementByIdController = async (req: Request, res: Response) => {
   const idAdvertisement = req.params.id;
-  const advetsements: any = await listAdvertsementByIdService(idAdvertisement);
+  const advertisement: any = await listAdvertsementByIdService(idAdvertisement);
 
-  return res.json(advetsements);
+  return res.json(advertisement);
 };
 
 export {
