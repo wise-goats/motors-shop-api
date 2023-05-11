@@ -14,6 +14,7 @@ import { verifyTokenMiddleware } from "../middlewares/verifyToken.middleware";
 import { listAdvertsementsController } from "../controllers/advertisement.controllers";
 import {
   createCommentController,
+  deleteCommentController,
   listCommentController,
 } from "../controllers/comment.controllers";
 const advertisementRoutes = Router();
@@ -31,7 +32,7 @@ advertisementRoutes.post(
   createCommentController
 );
 advertisementRoutes.get("/:id/comment", listCommentController);
-
+advertisementRoutes.delete("/:id/comment/:commentId", deleteCommentController);
 advertisementRoutes.delete(
   "/:id",
   verifyTokenMiddleware,

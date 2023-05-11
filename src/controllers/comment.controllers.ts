@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import createCommentService from "../services/comments/createComment.service";
 import listCommentsByIdService from "../services/comments/listCommentById.service";
+import deleteCommentService from "../services/comments/deleteComment.service";
 
 const createCommentController = async (req: Request, res: Response) => {
   const advertiseId = req.params.id;
@@ -23,4 +24,16 @@ const listCommentController = async (req: Request, res: Response) => {
 
   return res.json(listComments);
 };
-export { createCommentController, listCommentController };
+
+const deleteCommentController = async (req: Request, res: Response) => {
+  const commentId = req.params.commentId;
+
+  await deleteCommentService(commentId);
+
+  return res.status(204).json({});
+};
+export {
+  createCommentController,
+  listCommentController,
+  deleteCommentController,
+};
